@@ -1,13 +1,26 @@
 import React, { Component } from 'react';
 
 export default class Buggy extends Component {
+  constructor() {
+    super();
+    this.state = { counter: 0 };
+  }
   componentDidMount() {
-    throw new ReferenceError('reference error');
+  }
+  handleClick = () => {
+    this.setState({
+      counter: this.state.counter + 1,
+    });
   }
   render() {
+    if (this.state.counter > 5) {
+      throw new ReferenceError('reference error');
+    }
+
     return (
       <div>
-        buggy
+        <input type="button" onClick={this.handleClick} />
+        {this.state.counter}
       </div>
     );
   }
